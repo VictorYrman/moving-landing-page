@@ -61,6 +61,11 @@ h2{
     font-weight: 600;
 }
 
+h3{
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
 .container{
     max-width: 82rem;
     margin-inline: auto;
@@ -208,6 +213,57 @@ h2{
     content: url("../images/icons/money.svg")
 }
 
+/* Process Styles */
+
+.process .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3.75rem;
+    padding-block: 6rem 3.5rem;
+}
+
+.process__list{
+    max-width: 69.25rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 8.375rem;
+    row-gap: 3rem;
+    margin-inline: auto;
+}
+
+.process__item{
+    display: flex;
+    gap: 2.375rem;
+}
+
+.process__item::before{
+    width: 3.875rem;
+    font-weight: 300;
+    font-size: 3.125rem;
+    text-shadow: 2px 0px var(--primary-color);
+    margin-top: -10px;
+}
+
+.process__item:first-child::before{
+    content: "01";
+}
+
+.process__item:nth-child(2)::before{
+    content: "02";
+}
+
+.process__item:nth-child(3)::before{
+    content: "03";
+}
+
+.process__item:last-child::before{
+    content: "04";
+}
+
+.process__description{
+    margin-top: 1rem;
+}
 
 /* Media Queries */
 
@@ -218,6 +274,10 @@ h2{
 
     h2{
         font-size: 1.875rem;
+    }
+
+    h3{
+        font-size: 1.25rem;
     }
 
     .container{
@@ -271,6 +331,15 @@ h2{
         padding-bottom: 3rem;
     }
 
+    .process .container{
+        gap: 3.25rem;
+        padding-bottom: 12.75rem;
+    }
+
+    .process__list{
+        grid-template-columns: 1fr;
+    }
+
     .burger-menu{
         display: flex;
     }
@@ -311,6 +380,43 @@ h2{
     }
 
     .hero__list{
+        display: none;
+    }
+
+    .process .container{
+        gap: 1.75rem;
+        padding-block: 4rem 3rem;
+    }
+
+    .process__subtitle{
+        font-size: 1rem;
+    }
+
+    .process__list{
+        row-gap: 1.25rem;
+    }
+
+    .process__item{
+        gap: 1rem;
+    }
+
+    .process__item::before{
+        margin-top: 0;
+    }
+
+    .process__item > div{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .process__item > div::after{
+        content: url("../images/icons/arrow-bottom.svg")
+    }
+
+    .process__description {
         display: none;
     }
 }
