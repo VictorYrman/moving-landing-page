@@ -10,14 +10,14 @@
 <body>
     <header class="header">
         <div class="container">
-            <a href="#" class="header__logo">
+            <a href="/" class="logo header__logo">
                Moving
             </a>
             <nav class="header__nav">
                 <ul class="header__list">
-                    <li class="header__item"><a href="#" class="header__link">Цены</a></li>
-                    <li class="header__item"><a href="#" class="header__link">Автопарк</a></li>
-                    <li class="header__item"><a href="#" class="header__link">Отзывы</a></li>
+                    <li class="header__item"><a href="#prices" class="header__link">Цены</a></li>
+                    <li class="header__item"><a href="#car-park" class="header__link">Автопарк</a></li>
+                    <li class="header__item"><a href="#reviews" class="header__link">Отзывы</a></li>
                     <li class="header__item"><a href="#" class="header__link">Контакты</a></li>
                 </ul>
             </nav>
@@ -27,7 +27,7 @@
             </button>
         </div>
     </header>
-    <main class="main">
+    <main class="main" id="main">
         <section class="hero">
             <div class="container">
                 <h1 class="hero__title">Квартирные переезды</h1>
@@ -74,7 +74,7 @@
                 </ul>
             </div>
         </section>
-        <section class="prices">
+        <section class="prices" id="prices">
             <div class="container">
                 <h2 class="prices__title">Цены</h2>
                 <h3 class="prices__subtitle">Фиксированная стоимость на переезд под ключ</h3>
@@ -113,7 +113,7 @@
                 <a href="#" class="prices__link">Все цены</a>
             </div>
         </section>
-        <section class="car-park">
+        <section class="car-park" id="car-park">
             <div class="container">
                 <h2 class="car-park__title">Автопарк</h2>
                 <h3 class="car-park__subtitle">10 видов автомобилей от 800 кг до 10 тонн</h3>
@@ -152,7 +152,7 @@
                 </div>
             </div>
         </section>
-        <section class="reviews">
+        <section class="reviews" id="reviews">
             <div class="container">
                 <h2 class="reviews__title">Отзывы</h2>
                 <ul class="reviews__list">
@@ -204,5 +204,33 @@
             </div>
         </section>
     </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__rights">
+                <a href="/" class="logo footer__logo">Moving</a>
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">Соглашение на обработку персональных данных</a>
+            </div>
+            <nav class="footer__nav">
+                <ul class="footer__list">
+                    <li class="footer__item"><a href="#main" class="footer__link">Главная</a></li>
+                    <li class="footer__item"><a href="#prices" class="footer__link">Цена</a></li>
+                    <li class="footer__item"><a href="#car-park" class="footer__link">Автопарк</a></li>
+                    <li class="footer__item"><a href="#reviews" class="footer__link">Отзывы</a></li>
+                    <li class="footer__item"><a href="#" class="footer__link">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="footer__contacts">
+                <button class="btn btn--transparent footer__btn">Обратный вызов</button>
+                <a href="tel:8(029)-999-12-13" class="footer__number">8(029)-999-12-13</a>
+                <ul class="footer__socials">
+                    <li><a href="#"><img src="./assets/images/icons/youtube-icon.svg" alt="Иконка Youtube"></a></li>
+                    <li><a href="#"><img src="./assets/images/icons/vk-icon.svg" alt="Иконка VK"></a></li>
+                    <li><a href="#"><img src="./assets/images/icons/facebook-icon.svg" alt="Иконка Facebook"></a></li>
+                    <li><a href="#"><img src="./assets/images/icons/instagram-icon.svg" alt="Иконка Instagram"></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
