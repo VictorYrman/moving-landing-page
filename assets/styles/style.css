@@ -67,7 +67,7 @@ h3{
 }
 
 h4{
-    font-size: 1rem;
+    font-size: 1.25rem;
     font-weight: 500;
 }
 
@@ -335,6 +335,109 @@ h4{
     padding-bottom: 0.5rem;
 }
 
+/* Car-park Styles */
+
+.car-park .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-block: 3.5rem 3rem;
+}
+
+.car-park__subtitle{
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.car-park__list{
+    display: flex;
+    gap: 1.25rem;
+    margin-top: 3.75rem;
+}
+
+.car-park__item{
+    font-size: 1.25rem;
+    font-weight: 500;
+    border: 1px solid #EBEBEB;
+    padding: 0.75rem 4rem;
+}
+
+.car-park__item--active{
+    border-color: var(--primary-color);
+}
+
+.slider{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 5.75rem;
+}
+
+.slider__container{
+    max-width: 62.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.slider__container > img {
+    width: 40rem;
+    height: 28.125rem;
+}
+
+.slider__content{
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.slider__content > ul{
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+}
+
+.slider__content > ul > li{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.slider__content > ul > li::before{
+    content: url("../images/icons/check-mark.svg")
+}
+
+.slider__btn{
+    background-color: transparent;
+}
+
+.slider__content--mobile{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.dots{
+    display: flex;
+    gap: 1.125rem;
+}
+
+.dot{
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 50%;
+    background-color: var(--text-color);
+}
+
+.dot--active{
+    outline: 1px solid var(--primary-color);
+    border: 3px solid var(--white-color);
+    transform: scale(2);
+}
+
 /* Media Queries */
 
 @media (max-width: 1024px) {
@@ -348,6 +451,10 @@ h4{
 
     h3{
         font-size: 1.25rem;
+    }
+
+    h4{
+        font-size: 1rem;
     }
 
     .container{
@@ -439,6 +546,46 @@ h4{
 
     .prices__link{
         display: block;
+    }
+
+    .car-park__list{
+        margin-top: 2.875rem;
+    }
+
+    .car-park__item{
+        border: none;
+        padding: 0;
+    }
+
+    .car-park__item--active{
+        border-bottom: 1px solid var(--primary-color);
+    }
+
+    .slider{
+        justify-content: center;
+        margin-top: 5.125rem;
+    }
+
+    .slider__container{
+        flex-direction: column;
+    }
+
+    .slider__btn{
+        display: none;
+    }
+
+    .slider__content{
+        display: none;
+    }
+
+    .slider__content--mobile{
+        display: flex;
+        margin-top: 1rem;
+    }
+
+    .slider__container > img {
+        width: 32.5rem;
+        height: 22.5rem;
     }
 
     .burger-menu{
@@ -541,5 +688,30 @@ h4{
         font-size: 1rem;
         margin-top: 1.25rem;
         padding-bottom: 0.25rem;
+    }
+
+    .car-park .container{
+        padding-block: 2rem 3rem;
+    }
+
+    .car-park__list{
+        margin-top: 1rem;
+    }
+
+    .car-park__item{
+        font-size: 0.875rem;
+    }
+
+    .slider{
+        margin-top: 2.75rem;
+    }
+
+    .slider__container > img{
+        width: 20rem;
+        height: 13.75rem;
+    }
+
+    .slider__content--mobile{
+        gap: 1rem;
     }
 }
