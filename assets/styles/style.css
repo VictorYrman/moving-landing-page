@@ -1,5 +1,7 @@
 :root{
     --primary-color: #FED100;
+    --red-color: #FF352B;
+    --white-color: #ffffff;
     --text-color: #333333;
 }
 
@@ -46,12 +48,24 @@ html{
 body{
     color: var(--text-color);
     font-family: "Montserrat", sans-serif;
+    overflow-x: hidden;
+}
+
+h1{
+    font-size: 4.375rem;
+    font-weight: 700;
+}
+
+h2{
+    font-size: 2.25rem;
+    font-weight: 600;
 }
 
 .container{
     max-width: 82rem;
     margin-inline: auto;
     padding-inline: 2rem;
+    overflow: hidden;
 }
 
 .burger-menu{
@@ -64,6 +78,19 @@ body{
 .burger-menu > img{
     width: 2.5rem;
     height: 2.5rem;
+}
+
+.btn{
+    cursor: pointer;
+}
+
+.btn--red{
+    background-color: var(--red-color);
+}
+
+.btn-wrapper{
+    position: relative;
+    display: inline-block;
 }
 
 /* Header Styles */
@@ -103,9 +130,96 @@ body{
     text-decoration: underline;
 }
 
+/* Hero Styles */
+
+.hero{
+    background-color: var(--primary-color);
+    margin-top: -1px;
+}
+
+.hero .container{
+    background-image: url("../images/hero-image-desktop.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+.hero__title{
+    max-width: 30rem;
+    padding-top: 1.25rem;
+}
+
+.hero__subtitle{
+    margin-top: 1.75rem;
+}
+
+.hero__image{
+    display: none;
+}
+
+.hero__btn-wrapper{
+    margin-top: 3.125rem;
+}
+
+.hero__btn{
+    color: var(--white-color);
+    font-size: 1.5rem;
+    position: relative;
+    z-index: 100;
+    padding: 1rem 6rem;
+}
+
+.hero__btn-wrapper::after{
+    content: "";
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0.625rem;
+    top: 0.625rem;
+    z-index: 90;
+    border: 2px solid var(--white-color);
+}
+
+.hero__list{
+    max-width: 35rem;
+    display: flex;
+    justify-self: space-between;
+    gap: 2.5rem;
+    margin-top: 4.625rem;
+    padding-bottom: 4rem;
+}
+
+.hero__item{
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+}
+
+.hero__item:first-child::before{
+    content: url("../images/icons/truck.svg");
+}
+
+.hero__item:nth-child(2)::before{
+    content: url("../images/icons/trigger-two.svg")
+}
+
+.hero__item:last-child::before{
+    content: url("../images/icons/money.svg")
+}
+
+
 /* Media Queries */
 
 @media (max-width: 1024px) {
+    h1{
+        font-size: 3.5rem;
+    }
+
+    h2{
+        font-size: 1.875rem;
+    }
+
     .container{
         padding-inline: 1.5rem;
     }
@@ -126,12 +240,51 @@ body{
         display: none;
     }
 
+    .hero .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-image: none;
+    }
+
+    .hero__title{
+        text-align: center;
+    }
+    
+    .hero__subtitle{
+        margin-top: 0.5rem;
+    }
+
+    .hero__image{
+        width: 25rem;
+        height: auto;
+        display: block;
+        margin-left: 12rem;
+    }
+
+    .hero__btn-wrapper{
+        margin-top: 0;
+    }
+
+    .hero__list{
+        margin-top: 2.75rem;
+        padding-bottom: 3rem;
+    }
+
     .burger-menu{
         display: flex;
     }
 }
 
 @media (max-width: 600px) {
+    h1{
+        font-size: 1.75rem;
+    }
+
+    h2{
+        font-size: 1.125rem;
+    }
+
     .container{
         padding-inline: 1rem;
     }
@@ -142,5 +295,22 @@ body{
 
     .header__logo{
         font-size: 1.5rem;
+    }
+
+    .hero__title{
+        max-width: 12rem;
+        padding-top: 1rem;
+    }
+
+    .hero__btn-wrapper{
+        margin-bottom: 2.5rem;
+    }
+
+    .hero__btn-wrapper::after{
+        display: none;
+    }
+
+    .hero__list{
+        display: none;
     }
 }
