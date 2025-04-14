@@ -46,6 +46,8 @@
     />
     <link rel="stylesheet" href="./assets/styles/nullstyle.css" />
     <link rel="stylesheet" href="./assets/styles/style.css" />
+    <script src="./assets/scripts/effects.js" defer></script>
+    <script src="./assets/scripts/burger.js" defer></script>
     <title>MOVING | Квартирные переезды по Беларуси</title>
   </head>
   <body>
@@ -74,12 +76,44 @@
           >8(029)-999-12-13</a
         >
 
-        <button class="burger-menu header__burger-menu">
+        <button class="burger">
           <img
             src="./assets/images/icons/burger-menu.svg"
             alt="Изображение Burger-Menu"
           />
         </button>
+      </div>
+
+      <div class="burger-menu burger-menu--disappear">
+        <div class="burger-menu__header">
+          <a href="#" class="logo burger-menu__logo">Moving</a>
+          <button class="burger-menu__btn">
+            <img
+              src="./assets/images/icons/arrow-right.svg"
+              alt="Стрелка вправо"
+            />
+          </button>
+        </div>
+        <nav class="burger-menu__nav">
+          <ul class="burger-menu__list">
+            <li class="burger-menu__item">
+              <a href="#prices" class="burger-menu__link">Цены</a>
+            </li>
+            <li class="burger-menu__item">
+              <a href="#car-park" class="burger-menu__link">Автопарк</a>
+            </li>
+            <li class="burger-menu__item">
+              <a href="#reviews" class="burger-menu__link">Отзывы</a>
+            </li>
+            <li class="burger-menu__item">
+              <a href="#contacts" class="burger-menu__link">Контакты</a>
+            </li>
+          </ul>
+        </nav>
+
+        <a href="tel:8(029)-999-12-13" class="number burger-menu__number"
+          >8(029)-999-12-13</a
+        >
       </div>
     </header>
 
