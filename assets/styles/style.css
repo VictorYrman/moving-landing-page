@@ -257,7 +257,6 @@ nav ul li a:active {
   top: 0;
   left: 100%;
   z-index: 200;
-  transform: translateX(-100%);
   background-color: var(--white-color);
   border-top-left-radius: 2rem;
   border-bottom-left-radius: 2rem;
@@ -330,7 +329,7 @@ nav ul li a:active {
 }
 
 .hero .container {
-  background-image: url("../images/hero-image-desktop.png");
+  background-image: url("../images/hero-image-desktop.webp");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: right;
@@ -361,8 +360,7 @@ nav ul li a:active {
   padding: 1rem 6rem;
 }
 
-.hero__btn-wrapper::after {
-  content: "";
+.hero__btn-wrapper > span {
   display: inline-block;
   width: 100%;
   height: 100%;
@@ -371,6 +369,15 @@ nav ul li a:active {
   top: 0.625rem;
   z-index: 10;
   border: 2px solid var(--white-color);
+  transition: all 0.2s ease-in-out;
+}
+
+.hero__btn:hover + span {
+  background-color: var(--white-color);
+}
+
+.hero__btn:active + span {
+  transform: translateY(-5px);
 }
 
 .hero__list {
@@ -424,7 +431,7 @@ nav ul li a:active {
 }
 
 .process__item::before {
-  width: 3.875rem;
+  min-width: 3.875rem;
   font-weight: 300;
   font-size: 3.125rem;
   text-shadow: 2px 0px var(--primary-color);
@@ -509,12 +516,13 @@ nav ul li a:active {
   font-weight: 600;
 }
 
-.prices__link {
+.all-prices {
   display: none;
   font-size: 1.5rem;
   font-weight: 500;
+  background-color: transparent;
   border-bottom: 1px solid var(--text-color);
-  margin-top: 1.75rem;
+  cursor: pointer;
   padding-bottom: 0.5rem;
 }
 
@@ -538,14 +546,16 @@ nav ul li a:active {
   margin-top: 3.75rem;
 }
 
-.car-park__item {
+.car-park__item > button {
   font-size: 1.25rem;
   font-weight: 500;
   border: 1px solid #ebebeb;
+  background: transparent;
+  cursor: pointer;
   padding: 0.75rem 4rem;
 }
 
-.car-park__item--active {
+.car-park__item--active > button {
   border-color: var(--primary-color);
 }
 
@@ -563,6 +573,8 @@ nav ul li a:active {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  transition: all 0.2s ease-in-out;
 }
 
 .slider__container > img {
@@ -593,18 +605,21 @@ nav ul li a:active {
 }
 
 .slider__btn {
+  max-height: 3.25rem;
   background-color: transparent;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
 }
 
 .slider__content--mobile {
   display: none;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 3rem;
 }
 
 .dots {
-  display: flex;
+  display: none;
   gap: 1.125rem;
 }
 
@@ -670,7 +685,12 @@ nav ul li a:active {
   display: none;
   text-decoration: underline;
   cursor: pointer;
+  background-color: transparent;
   margin-top: 1rem;
+}
+
+.reviews__btn {
+  display: none;
 }
 
 /* Feedback Styles */
@@ -701,14 +721,30 @@ nav ul li a:active {
   font-weight: 700;
 }
 
+.feedback__managment {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .feedback__legend--additional {
   display: flex;
   align-items: center;
   gap: 0.75rem;
 }
 
-.feedback__legend--additional::after {
-  content: url("../images/icons/arrow-up.svg");
+.feedback__btn--additional {
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+}
+
+.feedback__btn--additional img {
+  transition: transform 0.3s ease-in-out;
+}
+
+.footer__btn--rotated img {
+  transform: rotate(180deg);
 }
 
 .feedback__input-group,
@@ -870,8 +906,7 @@ nav ul li a:active {
   font-size: 0.875rem;
 }
 
-.feedback__btn-wrapper::after {
-  content: "";
+.feedback__btn-wrapper > span {
   display: inline-block;
   width: 100%;
   height: 100%;
@@ -880,6 +915,7 @@ nav ul li a:active {
   top: 0.625rem;
   z-index: 10;
   border: 2px solid var(--primary-color);
+  transition: all 0.2s ease-in-out;
 }
 
 .feedback__btn {
@@ -887,6 +923,14 @@ nav ul li a:active {
   font-weight: 600;
   position: relative;
   z-index: 100;
+}
+
+.feedback__btn:hover + span {
+  background-color: var(--primary-color);
+}
+
+.feedback__btn:active + span {
+  transform: translateY(-5px);
 }
 
 /* Map Styles */
@@ -1067,13 +1111,13 @@ nav ul li a:active {
 
   .prices__list {
     grid-template-columns: 1fr;
-    margin-top: 2.75rem;
+    margin-top: 0.75rem;
   }
 
   .prices__item {
     gap: 2rem;
     border-color: transparent;
-    padding-block: 0;
+    padding-block: 2rem;
   }
 
   .prices__item:first-child {
@@ -1088,7 +1132,7 @@ nav ul li a:active {
     gap: 1.5rem;
   }
 
-  .prices__link {
+  .all-prices {
     display: block;
   }
 
@@ -1096,12 +1140,12 @@ nav ul li a:active {
     margin-top: 2.875rem;
   }
 
-  .car-park__item {
+  .car-park__item > button {
     border: none;
     padding: 0;
   }
 
-  .car-park__item--active {
+  .car-park__item--active > button {
     border-bottom: 1px solid var(--primary-color);
   }
 
@@ -1136,13 +1180,28 @@ nav ul li a:active {
     display: flex;
   }
 
+  .dots {
+    display: flex;
+    position: relative;
+    bottom: 5rem;
+  }
+
   .reviews .container {
     gap: 3.25rem;
     padding-block: 3.125rem;
   }
 
-  .reviews__item {
-    width: 420px;
+  .reviews__list {
+    flex-direction: column;
+  }
+
+  .reviews__item:first-child,
+  .reviews__item:last-child {
+    display: none;
+  }
+
+  .reviews__btn {
+    display: block;
   }
 
   .reviews .dots {
@@ -1271,7 +1330,7 @@ nav ul li a:active {
     margin-bottom: 2.5rem;
   }
 
-  .hero__btn-wrapper::after {
+  .hero__btn-wrapper > span {
     display: none;
   }
 
@@ -1296,24 +1355,15 @@ nav ul li a:active {
     gap: 1rem;
   }
 
-  .process__item::before {
-    margin-top: 0;
-  }
-
   .process__item > div {
     width: 100%;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
     gap: 1rem;
   }
 
-  .process__item > div::after {
-    content: url("../images/icons/arrow-bottom.svg");
-  }
-
   .process__description {
-    display: none;
+    margin-top: 0;
   }
 
   .prices .container {
@@ -1328,7 +1378,7 @@ nav ul li a:active {
     gap: 1.5rem;
   }
 
-  .prices__link {
+  .all-prices {
     font-size: 1rem;
     margin-top: 1.25rem;
     padding-bottom: 0.25rem;
@@ -1342,7 +1392,7 @@ nav ul li a:active {
     margin-top: 1rem;
   }
 
-  .car-park__item {
+  .car-park__item > button {
     font-size: 0.875rem;
   }
 
@@ -1356,7 +1406,7 @@ nav ul li a:active {
   }
 
   .slider__content--mobile {
-    gap: 1rem;
+    gap: 3rem;
   }
 
   .reviews .container {
