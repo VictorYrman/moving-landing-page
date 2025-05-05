@@ -7,9 +7,8 @@ const gazelleJSON = `{
     "Грузоподъёмность 1.5"
   ],
   "image": "./assets/images/gazel.webp"
-}`;
-
-const heelJSON = `{
+}`,
+  heelJSON = `{
   "name": "Каблук 2 метра",
   "characteristics": [
     "Ширина 1.8",
@@ -19,9 +18,8 @@ const heelJSON = `{
   ],
   "image": "./assets/images/heel.webp"
 }
-`;
-
-const truckJSON = `{
+`,
+  truckJSON = `{
   "name": "Грузовик 3 метра",
   "characteristics": [
     "Ширина 3",
@@ -31,121 +29,91 @@ const truckJSON = `{
   ],
   "image": "./assets/images/truck.webp"
 }
-`;
-
-const cars = [
-  JSON.parse(gazelleJSON),
-  JSON.parse(heelJSON),
-  JSON.parse(truckJSON),
-];
-
-const sliderContainer = document.querySelector(".slider__container");
-const carParkItems = document.querySelectorAll(".car-park__item");
-const sliderBtnLeft = document.querySelector(".slider__btn--left");
-const sliderBtnRight = document.querySelector(".slider__btn--right");
-const dotsContainer = document.querySelector(".dots");
-
+`,
+  cars = [JSON.parse(gazelleJSON), JSON.parse(heelJSON), JSON.parse(truckJSON)],
+  sliderContainer = document.querySelector(".slider__container"),
+  carParkItems = document.querySelectorAll(".car-park__item"),
+  sliderBtnLeft = document.querySelector(".slider__btn--left"),
+  sliderBtnRight = document.querySelector(".slider__btn--right"),
+  dotsContainer = document.querySelector(".dots");
 let currentIndex = 0;
-
-const getCar = (car) => {
-  return `
+const getCar = (e) => `
     <div class="slider__content">
-      <h4>${car.name}</h4>
+      <h4>${e.name}</h4>
       <ul>
-        <li>${car.characteristics[0]} м</li>
-        <li>${car.characteristics[1]} м</li>
-        <li>${car.characteristics[2]} м<sup>3</sup></li>
-        <li>${car.characteristics[3]} т</li>
+        <li>${e.characteristics[0]} м</li>
+        <li>${e.characteristics[1]} м</li>
+        <li>${e.characteristics[2]} м<sup>3</sup></li>
+        <li>${e.characteristics[3]} т</li>
       </ul>
       <button class="btn btn--primary car-park__btn">Заказать</button>
     </div>
-    <img src="${car.image}" alt="${car.name}" />
+    <img src="${e.image}" alt="${e.name}" loading="lazy" />
     <div class="slider__content--mobile">
-      <h4>${car.name} / ${car.characteristics[3].substring(17)} тонны</h4>
+      <h4>${e.name} / ${e.characteristics[3].substring(17)} тонны</h4>
       <button class="btn btn--primary car-park__btn">Заказать</button>
     </div>
-  `;
-};
-
-const createDots = () => {
-  dotsContainer.innerHTML = "";
-  cars.forEach((_, index) => {
-    const dot = document.createElement("div");
-    dot.classList.add("dot");
-    if (index === currentIndex) dot.classList.add("dot--active");
-    dot.addEventListener("click", () => updateSlider(index));
-    dotsContainer.appendChild(dot);
-  });
-};
-
-const updateSlider = (index) => {
-  currentIndex = index;
-  sliderContainer.innerHTML = getCar(cars[currentIndex]);
-
-  document.querySelectorAll(".car-park__btn").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      window.location.assign("#feedback");
-    });
-  });
-
-  carParkItems.forEach((item, i) => {
-    item.classList.toggle("car-park__item--active", i === currentIndex);
-  });
-
-  document.querySelectorAll(".dot").forEach((dot, i) => {
-    dot.classList.toggle("dot--active", i === currentIndex);
-  });
-
-  sliderBtnLeft.disabled = currentIndex === 0;
-  sliderBtnRight.disabled = currentIndex === cars.length - 1;
-};
-
-const initSlider = () => {
-  createDots();
-  updateSlider(0);
-
-  sliderBtnLeft.addEventListener("click", () => {
-    if (currentIndex > 0) updateSlider(currentIndex - 1);
-  });
-
-  sliderBtnRight.addEventListener("click", () => {
-    if (currentIndex < cars.length - 1) updateSlider(currentIndex + 1);
-  });
-
-  carParkItems.forEach((item, index) => {
-    item.addEventListener("click", () => {
-      updateSlider(index);
-    });
-  });
-
-  let touchStartX = 0;
-  let touchEndX = 0;
-
-  sliderContainer.addEventListener(
-    "touchstart",
-    (event) => {
-      touchStartX = event.changedTouches[0].screenX;
-    },
-    { passive: true }
-  );
-
-  sliderContainer.addEventListener(
-    "touchend",
-    (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    },
-    { passive: true }
-  );
-
-  const handleSwipe = () => {
-    if (touchEndX < touchStartX && currentIndex < cars.length - 1) {
-      updateSlider(currentIndex + 1);
-    }
-    if (touchEndX > touchStartX && currentIndex > 0) {
-      updateSlider(currentIndex - 1);
-    }
+  `,
+  createDots = () => {
+    (dotsContainer.innerHTML = ""),
+      cars.forEach((e, t) => {
+        let r = document.createElement("div");
+        r.classList.add("dot"),
+          t === currentIndex && r.classList.add("dot--active"),
+          r.addEventListener("click", () => updateSlider(t)),
+          dotsContainer.appendChild(r);
+      });
+  },
+  updateSlider = (e) => {
+    (currentIndex = e),
+      (sliderContainer.innerHTML = getCar(cars[currentIndex])),
+      document.querySelectorAll(".car-park__btn").forEach((e) => {
+        e.addEventListener("click", () => {
+          window.location.assign("#feedback");
+        });
+      }),
+      carParkItems.forEach((e, t) => {
+        e.classList.toggle("car-park__item--active", t === currentIndex);
+      }),
+      document.querySelectorAll(".dot").forEach((e, t) => {
+        e.classList.toggle("dot--active", t === currentIndex);
+      }),
+      (sliderBtnLeft.disabled = 0 === currentIndex),
+      (sliderBtnRight.disabled = currentIndex === cars.length - 1);
+  },
+  initSlider = () => {
+    createDots(),
+      updateSlider(0),
+      sliderBtnLeft.addEventListener("click", () => {
+        currentIndex > 0 && updateSlider(currentIndex - 1);
+      }),
+      sliderBtnRight.addEventListener("click", () => {
+        currentIndex < cars.length - 1 && updateSlider(currentIndex + 1);
+      }),
+      carParkItems.forEach((e, t) => {
+        e.addEventListener("click", () => {
+          updateSlider(t);
+        });
+      });
+    let e = 0,
+      t = 0;
+    sliderContainer.addEventListener(
+      "touchstart",
+      (t) => {
+        e = t.changedTouches[0].screenX;
+      },
+      { passive: !0 }
+    ),
+      sliderContainer.addEventListener(
+        "touchend",
+        (e) => {
+          (t = e.changedTouches[0].screenX), r();
+        },
+        { passive: !0 }
+      );
+    let r = () => {
+      t < e && currentIndex < cars.length - 1 && updateSlider(currentIndex + 1),
+        t > e && currentIndex > 0 && updateSlider(currentIndex - 1);
+    };
   };
-};
-
 initSlider();

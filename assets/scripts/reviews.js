@@ -17,81 +17,61 @@ const reviewsJSON = `{
     }
   ]
 }
-`;
-
-const reviews = JSON.parse(reviewsJSON);
-
-const reviewsList = document.querySelector(".reviews__list");
-
-const getReview = (review) => {
-  const isMobile = window.innerWidth <= 600;
-  const shortText = isMobile
-    ? review.reviewDescription.substring(0, 100) + "..."
-    : review.reviewDescription;
-
-  return `<li class="reviews__item">
-              <h3 class="reviews__subtitle">${review.reviewAuthor}</h3>
+`,
+  reviews = JSON.parse(reviewsJSON),
+  reviewsList = document.querySelector(".reviews__list"),
+  getReview = (e) => {
+    let i = window.innerWidth <= 600,
+      t = i
+        ? e.reviewDescription.substring(0, 100) + "..."
+        : e.reviewDescription;
+    return `<li class="reviews__item">
+              <h3 class="reviews__subtitle">${e.reviewAuthor}</h3>
               <div class="reviews__info">
-                <p>${review.reviewDate}</p>
+                <p>${e.reviewDate}</p>
                 <img src="./assets/images/icons/stars.svg" alt="Пять звёзд" />
               </div>
               <p class="reviews__description" data-full="${
-                review.reviewDescription
+                e.reviewDescription
               }">
-                ${shortText}
+                ${t}
               </p>
               ${
-                isMobile
+                i
                   ? '<button class="reviews__more">Читать полностью</button>'
                   : ""
               }
             </li>`;
-};
-
-const initializationRender = () => {
-  reviews.reviews.forEach((review) => {
-    reviewsList.insertAdjacentHTML("beforeend", getReview(review));
+  },
+  initializationRender = () => {
+    reviews.reviews.forEach((e) => {
+      reviewsList.insertAdjacentHTML("beforeend", getReview(e));
+    }),
+      document.querySelectorAll(".reviews__more").forEach((e) => {
+        e.addEventListener("click", function () {
+          let e = this.previousElementSibling,
+            i = e.dataset.full;
+          "Читать полностью" === this.textContent
+            ? ((e.textContent = i), (this.textContent = "Свернуть"))
+            : ((e.textContent = i.substring(0, 100) + "..."),
+              (this.textContent = "Читать полностью"));
+        });
+      });
+  };
+initializationRender(),
+  window.addEventListener("resize", () => {
+    (reviewsList.innerHTML = ""), initializationRender();
   });
-
-  document.querySelectorAll(".reviews__more").forEach((btn) => {
-    btn.addEventListener("click", function () {
-      const description = this.previousElementSibling;
-      const fullText = description.dataset.full;
-
-      if (this.textContent === "Читать полностью") {
-        description.textContent = fullText;
-        this.textContent = "Свернуть";
-      } else {
-        description.textContent = fullText.substring(0, 100) + "...";
-        this.textContent = "Читать полностью";
-      }
-    });
-  });
-};
-
-initializationRender();
-
-window.addEventListener("resize", () => {
-  reviewsList.innerHTML = "";
-  initializationRender();
-});
-
-let condition = false;
-
+let condition = !1;
 const allReviewsBtn = document.querySelector(".reviews__btn");
-
 allReviewsBtn.addEventListener("click", () => {
-  const items = document.querySelectorAll(".reviews__item");
-
-  if (condition) {
-    items[0].style.display = "none";
-    items[2].style.display = "none";
-    allReviewsBtn.textContent = "Все отзывы";
-  } else {
-    items[0].style.display = "block";
-    items[2].style.display = "block";
-    allReviewsBtn.textContent = "Свернуть отзывы";
-  }
-
-  condition = !condition;
+  let e = document.querySelectorAll(".reviews__item");
+  condition
+    ? ((e[0].style.display = "none"),
+      (e[2].style.display = "none"),
+      (allReviewsBtn.textContent = "Все отзывы"))
+    : ((e[0].style.display = "block"),
+      (e[2].style.display = "block"),
+      (allReviewsBtn.textContent = "Свернуть отзывы")),
+    (condition = !condition);
 });

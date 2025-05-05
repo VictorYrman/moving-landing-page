@@ -25,53 +25,40 @@ const servicesJSON = `{
     }
   ]
 }
-`;
-
-const services = JSON.parse(servicesJSON);
+`,
+  services = JSON.parse(servicesJSON);
 console.log(services.services.length);
-
-const allPricesBtn = document.querySelector(".all-prices");
-const pricesList = document.querySelector(".prices__list");
-let isExpanded = false;
-
-const getPricesItem = (service) => {
-  return `<li class="prices__item">
-              <h4>${service.serviceName}</h4>
+const allPricesBtn = document.querySelector(".all-prices"),
+  pricesList = document.querySelector(".prices__list");
+let isExpanded = !1;
+const getPricesItem = (e) => `<li class="prices__item">
+              <h4>${e.serviceName}</h4>
               <ul class="prices__conditions">
-                <li>${service.serviceEquipment[0]}</li>
-                <li>${service.serviceEquipment[1]}</li>
-                <li>${service.serviceEquipment[2]}</li>
+                <li>${e.serviceEquipment[0]}</li>
+                <li>${e.serviceEquipment[1]}</li>
+                <li>${e.serviceEquipment[2]}</li>
               </ul>
-              <p class="prices__price">${service.servicePrice} руб.</p>
+              <p class="prices__price">${e.servicePrice} руб.</p>
               <button class="btn btn--primary prices__btn">Заказать</button>
             </li>`;
-};
-
 document.addEventListener("DOMContentLoaded", () => {
-  for (let i = 0; i < services.services.length; i++) {
+  for (let e = 0; e < services.services.length; e++)
     pricesList.insertAdjacentHTML(
       "beforeend",
-      getPricesItem(services.services[i])
+      getPricesItem(services.services[e])
     );
-  }
-
-  document.querySelectorAll(".prices__btn").forEach((element) => {
-    navigate(element);
+  document.querySelectorAll(".prices__btn").forEach((e) => {
+    navigate(e);
   });
-});
-
-allPricesBtn.addEventListener("click", () => {
-  const items = document.querySelectorAll(".prices__item");
-
-  if (isExpanded) {
-    items[0].style.display = "none";
-    items[2].style.display = "none";
-    allPricesBtn.textContent = "Все цены";
-  } else {
-    items[0].style.display = "flex";
-    items[2].style.display = "flex";
-    allPricesBtn.textContent = "Свернуть цены";
-  }
-
-  isExpanded = !isExpanded;
-});
+}),
+  allPricesBtn.addEventListener("click", () => {
+    let e = document.querySelectorAll(".prices__item");
+    isExpanded
+      ? ((e[0].style.display = "none"),
+        (e[2].style.display = "none"),
+        (allPricesBtn.textContent = "Все цены"))
+      : ((e[0].style.display = "flex"),
+        (e[2].style.display = "flex"),
+        (allPricesBtn.textContent = "Свернуть цены")),
+      (isExpanded = !isExpanded);
+  });
